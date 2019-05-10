@@ -15,8 +15,9 @@ set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set whichwrap+=<,>
 set backspace=indent,eol,start
 set autowrite
-command! Bd bp\|bd \#
-set grepprg=ag\ --nogroup\ --nocolor
+set grepprg=ag\ --nogroup\ --nocolor\ --ignore=tags
+
+set errorformat^=ERROR:\ %f:%l:%c:%m
 
 "  Ctrl-P (http://ctrlpvim.github.io/ctrlp.vim/)
 "  git clone https://github.com/ctrlpvim/ctrlp.vim.git ~/.vim/bundle/ctrlp.vim
