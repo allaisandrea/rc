@@ -16,6 +16,8 @@ set whichwrap+=<,>
 set backspace=indent,eol,start
 set autowrite
 set grepprg=ag\ --nogroup\ --nocolor\ --ignore=tags
+set undofile
+set undodir=~/.vimundo
 
 set errorformat^=ERROR:\ %f:%l:%c:%m
 
