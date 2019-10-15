@@ -26,16 +26,19 @@ set errorformat^=%-GERROR:\ %f:%l:%c:%m
 set errorformat^=%-GDEBUG:\ %f:%l:%m
 set errorformat^=%-GWARNING:\ %f:%l:%m
 
-" fzf.vim
-" git clone https://github.com/junegunn/fzf.vim.git ~/.vim/bundle/fzf.vim
+" fzf.vim ----------------------------------------------------------------------------------------
+" $ git clone https://github.com/junegunn/fzf.vim.git ~/.vim/bundle/fzf.vim
+" $ brew install fd
+" For linux: set rtp+=~/.fzf
+" For mac: rtp+=/usr/local/opt/fzf
+set rtp+=/usr/local/opt/fzf
 set runtimepath^=~/.vim/bundle/fzf.vim
-set rtp+=~/.fzf
 nnoremap <C-P> :Files<CR>
 nnoremap <Leader>] :Buffers<CR>
 
-" clang-format
-" C-k formats current line
-" :map <C-K> :py3f ~/.vim/clang-format.py<cr>
+" clang-format -----------------------------------------------------------------------------------
+" $ brew install vim # for python3 support
+:map <C-K> :py3f ~/.vim/clang-format.py<cr>
 function! Formatonsave()
   let l:formatdiff = 1
   py3f ~/.vim/clang-format.py
