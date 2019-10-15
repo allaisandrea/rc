@@ -1,5 +1,5 @@
 set cursorline
-hi CursorLine   cterm=NONE ctermbg=darkgray guibg=darkgray
+set laststatus=2
 set hlsearch
 set incsearch
 set scrolloff=3
@@ -18,28 +18,20 @@ set autowrite
 set grepprg=ag\ --nogroup\ --nocolor\ --ignore=tags
 set undofile
 set undodir=~/.vimundo
+set exrc
 
-set errorformat^=ERROR:\ %f:%l:%c:%m
-
-"  Ctrl-P
-"  git clone https://github.com/ctrlpvim/ctrlp.vim.git ~/.vim/bundle/ctrlp.vim
-"set runtimepath^=~/.vim/bundle/ctrlp.vim
-"  use ag to search
-"let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-"let g:ctrlp_regexp = 1
-"let g:ctrlp_max_files = 0
-"let g:ctrlp_use_caching = 0
+set errorformat=%-Gf:%l:%c:\ warning\ %m
+set errorformat^=%f:%l:%c:\ %m
+set errorformat^=%-GERROR:\ %f:%l:%c:%m
+set errorformat^=%-GDEBUG:\ %f:%l:%m
+set errorformat^=%-GWARNING:\ %f:%l:%m
 
 " fzf.vim
 " git clone https://github.com/junegunn/fzf.vim.git ~/.vim/bundle/fzf.vim
 set runtimepath^=~/.vim/bundle/fzf.vim
 set rtp+=~/.fzf
 nnoremap <C-P> :Files<CR>
-nnoremap ;; :Buffers<CR>
-
-" Enable loading additional vimrc from current directory
-set exrc
-
+nnoremap <Leader>] :Buffers<CR>
 
 " clang-format
 " C-k formats current line
