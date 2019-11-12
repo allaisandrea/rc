@@ -20,19 +20,22 @@ set undofile
 set undodir=~/.vimundo
 set exrc
 
-set errorformat=%-Gf:%l:%c:\ warning\ %m
-set errorformat^=%f:%l:%c:\ %m
+set errorformat=%-Gf:%l:%c:\ warning:\ %m
+set errorformat^=%f:%l:%c:\ error:\ %m
 set errorformat^=%-GERROR:\ %f:%l:%c:%m
 set errorformat^=%-GDEBUG:\ %f:%l:%m
 set errorformat^=%-GWARNING:\ %f:%l:%m
 
 " fzf.vim ----------------------------------------------------------------------------------------
-" $ git clone https://github.com/junegunn/fzf.vim.git ~/.vim/bundle/fzf.vim
 " $ brew install fd
-" For linux: set rtp+=~/.fzf
-" For mac: rtp+=/usr/local/opt/fzf
-set rtp+=/usr/local/opt/fzf
-set runtimepath^=~/.vim/bundle/fzf.vim
+call plug#begin('~/.vim/plugged')
+Plug 'lervag/vimtex'
+" For linux: 'dir': '~/.fzf'
+" For mac 'dir': '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+call plug#end()
+
 nnoremap <C-P> :Files<CR>
 nnoremap <Leader>] :Buffers<CR>
 
