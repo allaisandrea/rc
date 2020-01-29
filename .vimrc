@@ -15,18 +15,21 @@ set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set whichwrap+=<,>
 set backspace=indent,eol,start
 set autowrite
-set grepprg=ag\ --nogroup\ --nocolor\ --ignore=tags
+set autoread
+set grepprg=ag\ --nogroup\ --nocolor\ --ignore=tags\ --ignore=*.ipynb
 set undofile
 set undodir=~/.vimundo
 set exrc
 
-set errorformat=%-Gf:%l:%c:\ warning:\ %m
-set errorformat^=%f:%l:%c:\ error:\ %m
+set errorformat=%f:%l:%c:\ error:\ %m
+set errorformat^=%f:%l:%c:\ fatal\ error:\ %m
+set errorformat^=%f:%l:%c:\ warning:\ %m
+set errorformat^=%f:%l:%c:\ note:\ %m
 set errorformat^=%-GERROR:\ %f:%l:%c:%m
 set errorformat^=%-GDEBUG:\ %f:%l:%m
 set errorformat^=%-GWARNING:\ %f:%l:%m
 
-" fzf.vim ----------------------------------------------------------------------------------------
+" fzf.vim ---------------------------------------------------------------------
 " $ brew install fd
 call plug#begin('~/.vim/plugged')
 Plug 'lervag/vimtex'
@@ -38,8 +41,9 @@ call plug#end()
 
 nnoremap <C-P> :Files<CR>
 nnoremap <Leader>] :Buffers<CR>
+nnoremap <Leader>pf :!yapf --in-place %<CR>
 
-" clang-format -----------------------------------------------------------------------------------
+" clang-format ----------------------------------------------------------------
 " $ brew install vim # for python3 support
 :map <C-K> :py3f ~/.vim/clang-format.py<cr>
 function! Formatonsave()
