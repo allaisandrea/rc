@@ -19,13 +19,21 @@ set autoread
 set grepprg=ag\ --nogroup\ --nocolor\ --ignore=tags\ --ignore=*.ipynb
 set undofile
 set undodir=~/.vimundo
-set exrc
+colorscheme default
+hi clear StatusLine
+hi clear StatusLineNC
+hi clear Visual
+hi Visual cterm=NONE ctermbg=DarkGrey
+hi StatusLine  cterm=NONE ctermfg=BLACK ctermbg=White
+hi StatusLineNC cterm=NONE ctermfg=Black  ctermbg=Gray
+"set exrc
 
 set errorformat=%f:%l:%c:\ error:\ %m
 set errorformat^=%f:%l:%c:\ fatal\ error:\ %m
-set errorformat^=%f:%l:%c:\ warning:\ %m
+set errorformat^=%-Gf:%l:%c:\ warning:\ %m
 set errorformat^=%f:%l:%c:\ note:\ %m
-set errorformat^=%-GERROR:\ %f:%l:%c:%m
+set errorformat^=%-GERROR:\ %f:%l:%c:\ C++\ compilation\ of\ rule
+set errorformat^=GERROR:\ %f:%l:%c:%m
 set errorformat^=%-GDEBUG:\ %f:%l:%m
 set errorformat^=%-GWARNING:\ %f:%l:%m
 
@@ -42,6 +50,7 @@ call plug#end()
 nnoremap <C-P> :Files<CR>
 nnoremap <Leader>] :Buffers<CR>
 nnoremap <Leader>pf :!yapf --in-place %<CR>
+nnoremap <Leader>le o\begin{equation}<CR>\end{equation}<CR><ESC>kO
 
 " clang-format ----------------------------------------------------------------
 " $ brew install vim # for python3 support
