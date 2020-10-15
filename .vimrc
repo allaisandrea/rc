@@ -20,12 +20,14 @@ set grepprg=ag\ --nogroup\ --nocolor\ --ignore=tags\ --ignore=*.ipynb
 set undofile
 set undodir=~/.vimundo
 colorscheme default
-hi clear StatusLine
-hi clear StatusLineNC
 hi clear Visual
-hi Visual cterm=NONE ctermbg=DarkGrey
-hi StatusLine  cterm=NONE ctermfg=BLACK ctermbg=White
-hi StatusLineNC cterm=NONE ctermfg=Black  ctermbg=Gray
+hi Visual cterm=reverse 
+hi clear Search
+hi Search cterm=reverse
+hi clear StatusLine
+hi StatusLine  cterm=None ctermfg=Black ctermbg=White
+hi clear StatusLineNC
+hi StatusLineNC cterm=None ctermfg=Black  ctermbg=Gray
 "set exrc
 
 set errorformat=%f:%l:%c:\ error:\ %m
@@ -60,3 +62,11 @@ function! Formatonsave()
   py3f ~/.vim/clang-format.py
 endfunction
 autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+
+" remove trailing whitespace --------------------------------------------------
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+nnoremap <Leader>ws :call TrimWhitespace()<CR>
