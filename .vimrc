@@ -19,23 +19,15 @@ set autoread
 set grepprg=ag\ --nogroup\ --nocolor\ --ignore=tags\ --ignore=*.ipynb
 set undofile
 set undodir=~/.vimundo
-colorscheme default
-hi clear Visual
-hi Visual cterm=reverse 
-hi clear Search
-hi Search cterm=reverse
-hi clear StatusLine
-hi StatusLine  cterm=None ctermfg=Black ctermbg=White
-hi clear StatusLineNC
-hi StatusLineNC cterm=None ctermfg=Black  ctermbg=Gray
+color my_scheme
 "set exrc
 
 set errorformat=%f:%l:%c:\ error:\ %m
 set errorformat^=%f:%l:%c:\ fatal\ error:\ %m
-set errorformat^=%-Gf:%l:%c:\ warning:\ %m
-set errorformat^=%f:%l:%c:\ note:\ %m
+set errorformat^=%-G%f:%l:%c:\ warning:\ %m
+set errorformat^=%-G%f:%l:%c:\ note:\ %m
 set errorformat^=%-GERROR:\ %f:%l:%c:\ C++\ compilation\ of\ rule
-set errorformat^=GERROR:\ %f:%l:%c:%m
+set errorformat^=%-GERROR:\ %f:%l:%c:%m
 set errorformat^=%-GDEBUG:\ %f:%l:%m
 set errorformat^=%-GWARNING:\ %f:%l:%m
 
@@ -56,7 +48,7 @@ nnoremap <Leader>le o\begin{equation}<CR>\end{equation}<CR><ESC>kO
 
 " clang-format ----------------------------------------------------------------
 " $ brew install vim # for python3 support
-:map <C-K> :py3f ~/.vim/clang-format.py<cr>
+" :map <C-K> :py3f ~/.vim/clang-format.py<cr>
 function! Formatonsave()
   let l:formatdiff = 1
   py3f ~/.vim/clang-format.py
@@ -70,3 +62,4 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 nnoremap <Leader>ws :call TrimWhitespace()<CR>
+redir >> /tmp/vim.log
