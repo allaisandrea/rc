@@ -43,7 +43,7 @@ call plug#end()
 
 nnoremap <C-P> :Files<CR>
 nnoremap <Leader>] :Buffers<CR>
-nnoremap <Leader>pf :!yapf --in-place %<CR>
+nnoremap <Leader>pf :!bazel run //:ruff -- format %<CR>
 nnoremap <Leader>le o\begin{equation}<CR>\end{equation}<CR><ESC>kO
 
 " clang-format ----------------------------------------------------------------
@@ -62,4 +62,10 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 nnoremap <Leader>ws :call TrimWhitespace()<CR>
-redir >> /tmp/vim.log
+
+let g:session_name = 'default'
+fun! SaveSess()
+    execute 'mksession! ~/.vim/sessions/' . g:session_name
+endfun
+
+autocmd BufWritePre * call SaveSess()
