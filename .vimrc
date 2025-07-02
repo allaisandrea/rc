@@ -62,10 +62,3 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 nnoremap <Leader>ws :call TrimWhitespace()<CR>
-
-let g:session_name = 'default'
-fun! SaveSess()
-    execute 'mksession! ~/.vim/sessions/' . g:session_name
-endfun
-
-autocmd BufWritePre * call SaveSess()
